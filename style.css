@@ -1,0 +1,410 @@
+ :root {
+      color-scheme: dark;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      --ink: #fffdf7;
+      --muted: rgba(255, 253, 247, 0.78);
+      --gold: #f6d58b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-width: 320px;
+      min-height: 100vh;
+      min-height: 100svh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      padding: clamp(1rem, 4vw, 3rem);
+      overflow-x: hidden;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse at 12% 12%, rgba(128, 156, 115, 0.22), transparent 38rem),
+        radial-gradient(ellipse at 88% 88%, rgba(191, 143, 79, 0.15), transparent 34rem),
+        #101b18;
+    }
+
+    .welcome-card {
+      position: relative;
+      isolation: isolate;
+      width: min(100%, 1100px);
+      min-height: min(690px, calc(100svh - 3rem));
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.34);
+      border-radius: clamp(1.5rem, 4vw, 2.75rem);
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow:
+        0 36px 100px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+
+    .welcome-card__image,
+    .welcome-card__shade {
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .welcome-card__image {
+      object-fit: cover;
+      object-position: center 58%;
+      animation: image-arrive 1.2s ease-out both;
+    }
+
+    .welcome-card__shade {
+      background:
+        linear-gradient(90deg, rgba(9, 17, 14, 0.64), rgba(9, 17, 14, 0.24) 58%, rgba(9, 17, 14, 0.34)),
+        linear-gradient(0deg, rgba(8, 14, 12, 0.48), transparent 65%);
+      backdrop-filter: blur(1px);
+    }
+
+    .welcome-card__content {
+      width: min(100% - 2rem, 680px);
+      margin: auto;
+      padding: clamp(2rem, 7vw, 5.5rem);
+      text-align: center;
+      animation: content-arrive 800ms 120ms ease-out both;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin: 0 0 1.5rem;
+      color: var(--gold);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      line-height: 1.4;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before,
+    .eyebrow::after {
+      width: 1.5rem;
+      height: 1px;
+      content: "";
+      background: currentColor;
+      opacity: 0.8;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(3.5rem, 11vw, 7.5rem);
+      font-weight: 500;
+      letter-spacing: -0.065em;
+      line-height: 0.95;
+      text-wrap: balance;
+      text-shadow: 0 3px 30px rgba(0, 0, 0, 0.24);
+    }
+
+    .welcome-card__description {
+      max-width: 34rem;
+      margin: 1.5rem auto 2.25rem;
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.125rem);
+      line-height: 1.7;
+      text-wrap: balance;
+    }
+
+    .open-button {
+      display: inline-flex;
+      min-height: 3.5rem;
+      align-items: center;
+      justify-content: center;
+      gap: 0.85rem;
+      padding: 0.85rem 1.65rem;
+      border: 1px solid rgba(255, 255, 255, 0.75);
+      border-radius: 999px;
+      color: #17201a;
+      background: rgba(255, 253, 247, 0.94);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      font: inherit;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .open-button:hover {
+      transform: translateY(-2px);
+      background: #148a97;
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.3);
+    }
+
+    .open-button:focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 5px;
+    }
+
+    .open-button__arrow {
+      font-size: 1.2rem;
+      line-height: 1;
+      transition: transform 180ms ease;
+    }
+
+    .open-button:hover .open-button__arrow {
+      transform: translateX(3px);
+    }
+
+    @keyframes content-arrive {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes image-arrive {
+      from { opacity: 0.65; transform: scale(1.035); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @media (max-width: 600px) {
+      .welcome-card {
+        min-height: min(680px, calc(100svh - 2rem));
+      }
+
+      .welcome-card__image {
+        object-position: 56% center;
+      }
+
+      .welcome-card__shade {
+        background:
+          linear-gradient(0deg, rgba(9, 17, 14, 0.7), rgba(9, 17, 14, 0.34)),
+          linear-gradient(90deg, rgba(9, 17, 14, 0.2), transparent);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #f7efe5, #d9c2a7);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.quiz-container {
+    background-color: white;
+    width: 100%;
+    max-width: 600px;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+h1 {
+    text-align: center;
+    color: #5c3d2e;
+    margin-bottom: 10px;
+}
+
+.question-number {
+    text-align: center;
+    color: #777;
+    margin-bottom: 30px;
+}
+
+.question {
+    color: #333;
+    margin-bottom: 25px;
+    line-height: 1.4;
+}
+
+.answer-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.answer-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #40735c;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.answer-btn:hover {
+    background-color: #eadbc8;
+    border-color: #5c3d2e;
+}
+
+.next-btn {
+    display: block;
+    margin: 25px auto 0;
+    padding: 12px 25px;
+    background-color: #e89e79;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.next-btn:hover {
+    background-color: #cab3a9;
+}
+
+.answer-btn.correct {
+    background-color: #b7e4c7;
+    border-color: #2d6a4f;
+    color: #1b4332;
+}
+
+.answer-btn.wrong {
+    background-color: #f8c4c4;
+    border-color: #c1121f;
+    color: #7f0000;
+}
+
+.answer-btn:disabled {
+    cursor: not-allowed;
+}
+
+.score-screen {
+    text-align: center;
+    padding: 10px;
+}
+
+.trophy {
+    font-size: 70px;
+    margin-bottom: 10px;
+}
+
+.score-screen h2 {
+    font-size: 32px;
+    color: #5c3d2e;
+    margin-bottom: 15px;
+}
+
+.score-text {
+    font-size: 18px;
+    color: #777;
+    margin-bottom: 5px;
+}
+
+.score-number {
+    font-size: 48px;
+    font-weight: bold;
+    color: #5c3d2e;
+    margin-bottom: 5px;
+}
+
+.percentage {
+    font-size: 28px;
+    font-weight: bold;
+    color: #2d6a4f;
+    margin-bottom: 20px;
+}
+
+.encouragement {
+    font-size: 17px;
+    color: #555;
+    line-height: 1.5;
+}
+
+/* Mobile Responsive Design */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 15px;
+    }
+
+    .quiz-container {
+        padding: 25px 18px;
+        border-radius: 15px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .question-number {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+
+    .question {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    .answer-btn {
+        padding: 14px;
+        font-size: 15px;
+    }
+
+    .next-btn {
+        width: 100%;
+        padding: 14px;
+        font-size: 16px;
+    }
+
+    .quiz-container img {
+        height: 160px;
+        border-radius: 12px;
+        margin-bottom: 20px;
+    }
+
+    /* Score screen */
+
+    .trophy {
+        font-size: 55px;
+    }
+
+    .score-screen h2 {
+        font-size: 27px;
+    }
+
+    .score-number {
+        font-size: 42px;
+    }
+
+    .percentage {
+        font-size: 25px;
+    }
+
+    .encouragement {
+        font-size: 15px;
+        padding: 0 5px;
+    }
+}
+
+.answer-btn:active,
+.next-btn:active {
+    transform: scale(0.98);
+}
