@@ -408,3 +408,8 @@ h1 {
 .next-btn:active {
     transform: scale(0.98);
 }
+
+.answer-btn:active,
+.next-btn:active {
+    transform: scale(0.98);
+}
